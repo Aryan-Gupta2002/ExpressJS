@@ -1,0 +1,28 @@
+<!-- This file is a sample frontend file which takes 2 numbers as inputs, 
+sends post request using axios.post() to backend  -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="a" type="text" placeholder="First Value">
+    <input id="b" type="text" placeholder="Second Value">    
+    <button id="Sum">Find Sum</button>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.6/axios.min.js"></script>
+    <script>
+        const btn = document.getElementById('Sum');
+        btn.addEventListener('click',async function(){
+            const response = await axios.post("http://localhost:3000/sum",{
+                a:document.getElementById('a').value,
+                b:document.getElementById('b').value
+            })
+            console.log(response.data);
+        })
+    </script>
+</body>
+</html>
+<!-- To start fronted and backend, first start the server using backend.js file with node  -->
+<!-- then using frontend,html, serve your file using npx serve and follow the local link available -->
