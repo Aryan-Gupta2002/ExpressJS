@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth Website</title>
+</head>
+<body>
+    <section>
+        Signup
+        <input id="signup-userID" type="text" name="username" placeholder="Username">
+        <input id="signup-pass" type="text" name="password" placeholder="Password">
+        <button id="signupbtn">Submit</button>
+    </section>
+    <section>
+        Signin
+        <input id="signin-userID" type="text" name="username" placeholder="Username">
+        <input id="signin-pass" type="text" name="password" placeholder="Password">
+        <button id="loginbtn">Submit</button>
+    </section>
+    <section>
+        User Information :
+        <div id="information"></div>
+    </section>
+    <section>
+        <button id="logoutbtn">Logout</button>
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.6/axios.min.js"></script>
+    <script>
+        const signup = document.getElementById('signupbtn');
+        signup.addEventListener('click',async function(){
+            const username = document.getElementById("signup-userID").value;
+            const password = document.getElementById("signup-pass").value;
+            await axios.post("http://localhost:3000/signup",{
+                username:username,
+                password:password
+            });
+            alert("You have signed up");
+        })
+        const signin = document.getElementById('loginbtn');
+        signin.addEventListener('click',async function(){
+            const username = document.getElementById("signin-userID").value;
+            const password = document.getElementById("signin-pass").value;
+            const response = await axios.post("http://localhost:3000/signin",{
+                username:username,
+                password:password
+            });
+            localStorage.setItem("token",response.data.token);
+            alert("You have signed in");
+        })
+    </script>
+</body>
+</html
